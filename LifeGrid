@@ -1,0 +1,32 @@
+package GameOfLife;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+/**
+ *
+ * @author James
+ */
+public class LifeGrid {
+    char [][] name;
+    File filename;
+    int currentGen;
+    public LifeGrid(int x, int y, String f) throws FileNotFoundException{
+        this.filename = new File(f);
+        name = new char [x][y];
+        
+        String temp [] = new String[findLines(filename)];
+        int j=0; //counter
+        for(Scanner counter = new Scanner(filename); counter.hasNextLine();j++ ){ //assigns temp array to the contents of files by lines
+            temp[j]=counter.nextLine();
+        }
+    }
+    public int findLines(File f) throws FileNotFoundException{
+        int count=0;
+        for(Scanner counter = new Scanner(f);counter.hasNextLine();count++){ //finds number of lines in file
+        }
+        return count;
+    }
+}
+
