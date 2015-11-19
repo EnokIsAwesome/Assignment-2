@@ -10,23 +10,31 @@ import java.util.Scanner;
  */
 public class LifeGrid {
     char [][] name;
-    File filename;
     int currentGen;
-    public LifeGrid(int x, int y, String f) throws FileNotFoundException{
-        this.filename = new File(f);
+    public LifeGrid(int x, int y, File filename) throws Exception{
         name = new char [x][y];
-        
-        String temp [] = new String[findLines(filename)];
-        int j=0; //counter
-        for(Scanner counter = new Scanner(filename); counter.hasNextLine();j++ ){ //assigns temp array to the contents of files by lines
+        Scanner counter = new Scanner(filename);
+        String[] temp = new String[findLines(filename)];
+         //counter
+        for(int j=0;j<temp.length;j++ ){ //assigns temp array to the contents of files by lines
+            System.out.println(j);
             temp[j]=counter.nextLine();
         }
     }
-    public int findLines(File f) throws FileNotFoundException{
+    public int findLines(File filename) throws Exception{
+        Scanner counter2 = new Scanner(filename);
         int count=0;
-        for(Scanner counter = new Scanner(f);counter.hasNextLine();count++){ //finds number of lines in file
+        try{
+        while(!counter2.nextLine().equalsIgnoreCase(null))
+        {
+            System.out.println(count);
+            count++;
         }
+        }
+        catch(Exception NoSuchElementException){
+            
+        }
+        System.out.println(count);
         return count;
-    }
+        }
 }
-
